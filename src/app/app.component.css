@@ -1,0 +1,9 @@
+main{
+ background-color: hsl(210,8%,97.5%);
+padding: 50px;
+}
+
+router-outlet
+{
+  display: none;
+}

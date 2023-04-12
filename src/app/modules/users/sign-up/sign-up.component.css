@@ -1,0 +1,36 @@
+form{
+  width: 300px;
+  padding: 10px;
+  background-color: white;
+  margin: auto;
+  border: 1px solid hsl(210, 8%, 75%);
+}
+
+input{
+  width:100%;
+  height: 32px;
+  border: 1px solid hsl(210, 8%, 75%);
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+label{
+  font-weight: 900;
+
+  font-size: 20px;
+}
+.row{
+  margin-top: 20px;
+}
+
+button{
+  background-color: hsl(206,100%,52%);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: 0px;
+}
+
+small{
+  color: red;
+}

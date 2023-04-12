@@ -1,0 +1,52 @@
+<section>
+  <ng-container *ngIf="question">
+    <div class="row">
+      <header>
+        <h2>{{ question.question }}</h2>
+        <br />
+        <p>{{ question.created | date : "yyyy/MM/dd hh:mma" }}</p>
+      </header>
+
+      <main>
+        <p>{{ question.details }}</p>
+        <p>{{ question.expecting }}</p>
+      </main>
+    </div>
+    <ng-container *ngIf="answers && answers.length > 0">
+      <h1>{{ answers.length }}Answer</h1>
+      <ng-container *ngFor="let ans of answers">
+        <div class="row">
+          <div class="card">
+            <p>{{ ans.answer}}</p>
+            <div class="actions">
+              <div class="action">
+                <a href=""> edit </a>
+              </div>
+              <div class="details">
+               <h6> {{ans.answer_user_name}}</h6>
+               <p>{{ans.created | date : "yyyy/MM/dd hh:mma"}}</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <div class="row">
+      <form action="" [formGroup]="answerForm" (submit)="postAnswer()">
+        <h6>Your Answer</h6>
+        <textarea
+          name="answer"
+          formControlName="answer"
+          id=""
+          cols="30"
+          rows="10"
+        ></textarea>
+        <button type="submit" [disabled]="answerForm.invalid">
+          Post Your Answer
+        </button>
+      </form>
+    </div>
+  </ng-container>
+</section>

@@ -1,0 +1,45 @@
+<header>
+  <nav>
+    <div class="brand">
+      <img src="../../../assets/logo-stackoverflow.png" alt="" />
+    </div>
+    <div class="item">
+      <a href="">About</a>
+    </div>
+    <div class="item">
+      <a href="">For Team</a>
+    </div>
+
+    <div class="item">
+      <div class="searchbar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" name="" id="" placeholder="Search..." />
+      </div>
+    </div>
+
+    <ng-container  *ngIf="!isLogin">
+
+    <div class="items">
+      <a routerLink="login" class="login">Login</a>
+    </div>
+    <div class="items">
+      <a routerLink="signup" class="signup">SignUp</a>
+    </div>
+    </ng-container>
+
+    <ng-container *ngIf="isLogin">
+      <div class="items">
+        <a class="login" (click)="logOut()">LogOut</a>
+      </div>
+      <div class="items">
+        <a class="signup" routerLink="/question">Ask Question</a>
+      </div>
+      <div class="items" >
+        <a class="signup">{{userName}}</a>
+      </div>
+    </ng-container>
+
+  </nav>
+
+
+</header>

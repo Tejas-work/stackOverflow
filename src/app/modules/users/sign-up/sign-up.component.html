@@ -1,0 +1,40 @@
+<form action="" [formGroup]="signUpForm" (submit)="signUp()">
+  <div class="row">
+    <label for="">Display Name</label><br>
+    <input type="text" name="displayName" id="" formControlName="displayName" />
+    <div *ngIf="displayName!.invalid && displayName!.touched">
+      <small *ngIf="displayName?.errors?.['required']">
+        Please enter Display Name
+      </small>
+    </div>
+  </div>
+  <div class="row">
+    <label for="">Email</label><br>
+    <input type="email" name="email" id="" formControlName="email" />
+    <div *ngIf="email?.invalid && email?.touched">
+      <small *ngIf="email?.errors?.['required']"> Please enter email </small>
+      <small *ngIf="email?.errors?.['email']">
+        Please enter a valid email address
+      </small>
+    </div>
+  </div>
+  <div class="row">
+    <label for="">Password</label><br>
+    <input type="password" name="password" id="" formControlName="password" />
+    <div *ngIf="password?.invalid && password?.touched">
+      <small *ngIf="password?.errors?.['required']">
+        Please enter Password<br>
+      </small>
+      <small *ngIf="password?.errors?.['minlength']">
+        Password must be at least {{ password?.errors?.['minlength'].requiredLength }} characters long<br>
+      </small>
+      <small *ngIf="password?.errors?.['pattern']">
+        <br> must contain at least one uppercase letter,<br> one lowercase letter, and one number
+      </small>
+    </div>
+  </div>
+
+  <div class="row" style="text-align: center;">
+    <button type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
+  </div>
+</form>

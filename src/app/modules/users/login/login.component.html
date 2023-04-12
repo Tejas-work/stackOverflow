@@ -1,0 +1,33 @@
+<form action="" [formGroup]="loginForm" (submit)="login()">
+
+  <div class="row">
+    <label for="">Email</label><br>
+    <input type="email" name="email" id="" formControlName="email" />
+    <div *ngIf="email?.invalid && email?.touched">
+      <small *ngIf="email?.errors?.['required']"> Please enter email </small>
+      <small *ngIf="email?.errors?.['email']">
+        Please enter a valid email address
+      </small>
+      <small *ngIf="email?.errors?.['message']">
+        Please enter a valid email address
+      </small>
+    </div>
+  </div>
+  <div class="row">
+    <label for="">Password</label><br>
+    <input type="password" name="password" id="" formControlName="password" />
+    <div *ngIf="password?.invalid && password?.touched">
+      <small *ngIf="password?.errors?.['required']">
+        Please enter Password<br>
+      </small>
+    </div>
+  </div>
+  <small *ngIf="password?.errors?.['invalidPassword']">
+    Please enter a valid Password
+  </small>
+
+  <div class="row" style="text-align: center;">
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+  </div>
+</form>
+

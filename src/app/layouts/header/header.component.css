@@ -1,0 +1,69 @@
+header {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 99999;
+}
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 47px;
+  width: 100%;
+  padding: 10px 0px;
+
+}
+
+img {
+  width: 150px;
+  height: 30px;
+}
+
+input {
+  width: 500px;
+  background-color: #F3F3F3;
+  border: 0px;
+  border: 0;
+  outline: 0px;
+}
+
+.searchbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F3F3F3;
+  border: 1px solid hsl(210, 8%, 75%);
+  border-radius: 5px;
+}
+
+i {
+  background-color: #F3F3F3;
+  padding: 10px;
+}
+
+a {
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.login{
+  border: 1px solid hsl(205,41%,63%);
+
+  background-color: hsl(205,46%,92%);
+}
+
+.signup{
+  background-color: hsl(206,100%,52%);
+  color: white;
+}
+/*
+.searchbar input:focus  {
+  -webkit-box-shadow: 1px 0px 10px 7px rgba(99, 187, 235, 1);
+  -moz-box-shadow: 1px 0px 10px 7px rgba(99, 187, 235, 1);
+  box-shadow: 1px 0px 10px 7px rgba(99, 187, 235, 1);
+} */
+
