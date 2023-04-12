@@ -58,6 +58,8 @@ button{
 }
 
 
-.card{
-  
+.details{
+  display: flex;
+  justify-content: space-around;
+
 }

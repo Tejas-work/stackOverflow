@@ -79,6 +79,7 @@ export class QuestionDetailsComponent {
         this.postService.postAnswer(body).subscribe({
           next: (res) => {
             console.log(res);
+            this.getQuestionAnswers();
           },
           error: (error) => console.log(error),
         });
