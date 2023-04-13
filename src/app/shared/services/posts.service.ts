@@ -101,4 +101,15 @@ export class PostsService {
     }
 
   }
+
+  deleteAnswer(id: number) {
+    try {
+      return this.http.delete<any>(this.base_answer_url+"/"+id);
+
+    } catch (error:any) {
+      return throwError(() => new Error(error));
+
+    }
+
+  }
 }

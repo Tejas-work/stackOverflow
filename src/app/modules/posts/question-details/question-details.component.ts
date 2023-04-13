@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Answers } from 'src/app/shared/models/answers.model';
-import { Question } from 'src/app/shared/models/question.model';
+import { Question, QuestionRes } from 'src/app/shared/models/question.model';
 import { PostsService } from 'src/app/shared/services/posts.service';
 
 @Component({
@@ -12,14 +13,15 @@ import { PostsService } from 'src/app/shared/services/posts.service';
 })
 export class QuestionDetailsComponent {
   id: number = -1;
-  question: Question | undefined;
+  question: QuestionRes | undefined;
   answerForm!: FormGroup;
   answers: any;
 
   constructor(
     private postService: PostsService,
     private route: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService,
   ) {
     route.params.subscribe((res) => {
       this.id = res['id'];
@@ -33,6 +35,9 @@ export class QuestionDetailsComponent {
     });
 
     this.getQuestionAnswers();
+  }
+  get answer() {
+    return this.answerForm.get('answer');
   }
 
   getQuestionAnswers() {
@@ -54,9 +59,12 @@ export class QuestionDetailsComponent {
     });
   }
 
-  get answer() {
-    return this.answerForm.get('answer');
+  editAnswer(ans: any) {
+    this.answer?.setValue(ans.answer);
   }
+
+
+
 
   postAnswer() {
     let user = sessionStorage.getItem('user');
@@ -86,4 +94,19 @@ export class QuestionDetailsComponent {
       }
     }
   }
+
+  deleteAnswer(id: number) {
+    this.postService.deleteAnswer(id).subscribe(
+      {
+        next: (res) => {
+          console.log(res);
+          this.toastr.success("deleted successfully!")
+        },
+        error: (error) => console.log(error),
+
+      }
+    )
+  }
+
+
 }

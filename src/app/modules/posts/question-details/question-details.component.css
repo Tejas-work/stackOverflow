@@ -1,4 +1,4 @@
-section{
+section {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,20 +12,20 @@ section{
 
 }
 
-header{
+header {
   text-align: left;
   padding: 20px 0px;
   width: 100%;
   border-bottom: 1px solid rgb(139, 139, 139);
 }
 
-p{
+p {
   text-align: left;
   margin: 20px 0px;
 }
 
 
-.row{
+.row {
   margin-top: 20px;
   padding: 30px;
   background-color: white;
@@ -33,23 +33,23 @@ p{
 }
 
 
-form h6{
+form h6 {
   text-align: left;
   font-size: 25px;
 }
 
-form{
+form {
   text-align: left;
 }
 
-textarea{
+textarea {
   margin-top: 20px;
   resize: none;
   width: 100%;
 }
 
-button{
-  background-color: hsl(206,100%,52%);
+button {
+  background-color: hsl(206, 100%, 52%);
   color: white;
   padding: 10px;
   border-radius: 5px;
@@ -58,8 +58,13 @@ button{
 }
 
 
-.details{
+.actions {
   display: flex;
   justify-content: space-around;
+  align-items: center;
+}
 
+span{
+  cursor: pointer;
+  color: hsl(206, 100%, 52%);
 }
