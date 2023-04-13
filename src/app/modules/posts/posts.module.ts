@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { QuestionDetailsComponent } from './question-details/question-details.component';
 import { QuestionComponent } from './question/question.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,7 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ]
 })
 export class PostsModule { }

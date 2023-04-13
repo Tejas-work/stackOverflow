@@ -1,5 +1,6 @@
-<!-- <section>
-  <h3>Welcome to Stack Overflow</h3>
+<section >
+  <ng-container *ngIf="allQuestion.length == 0">
+    <h3>Welcome to Stack Overflow</h3>
   <img src="../../../../assets/apple-touch-icon@2.png" alt="" />
   <p>
     Stack Overflow is a question and answer site for professional and enthusiast
@@ -8,9 +9,9 @@
     detailed, high-quality answers to every question about programming. We're a
     little bit different from other sites. Here's how:
   </p>
-</section> -->
+  </ng-container>
 
-<section>
+
   <ng-container *ngIf="allQuestion.length > 0">
     <div class="card" *ngFor="let question of allQuestion">
       <div class="left">
@@ -28,4 +29,9 @@
       </div>
     </div>
   </ng-container>
+
 </section>
+
+
+
+

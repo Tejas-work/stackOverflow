@@ -5,6 +5,7 @@ import { SignUpComponent } from './modules/users/sign-up/sign-up.component';
 import { HomeComponent } from './shared/components/home/home.component';
 import { QuestionComponent } from './modules/posts/question/question.component';
 import { QuestionDetailsComponent } from './modules/posts/question-details/question-details.component';
+import { ProfileComponent } from './modules/users/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
   }, {
     path: 'details/:id',
     component:QuestionDetailsComponent
+  }
+  , {
+    path: 'profile',
+    component:ProfileComponent
   }
   // {
   //   path:'users',loadChildren:()=>import('../app/modules/users/users.module').then(c => c.UsersModule)

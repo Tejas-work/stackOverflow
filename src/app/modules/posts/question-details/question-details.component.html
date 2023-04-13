@@ -1,41 +1,43 @@
 <section>
   <ng-container *ngIf="question">
     <div class="row">
-      <header>
-        <h2>{{ question.question }}</h2>
-        <br />
-        <p>{{ question.created | date : "yyyy/MM/dd hh:mma" }}</p>
-      </header>
-
+      <div class="count">
+        
+      </div>
       <main>
+        <header>
+          <h2>{{ question.question }}</h2>
+          <br />
+          <p>{{ question.created | date : "yyyy/MM/dd hh:mma" }}</p>
+        </header>
+
         <p>{{ question.details }}</p>
         <p>{{ question.expecting }}</p>
       </main>
     </div>
     <ng-container *ngIf="answers && answers.length > 0">
       <h1>{{ answers.length }} Answer</h1>
-      <ng-container *ngFor="let ans of answers">
+      <ng-container *ngFor="let ans of answers; let i = index">
         <div class="row">
           <div class="card">
-            <p>{{ ans.answer}}</p>
+            <p>{{ ans.answer }}</p>
             <div class="actions">
               <div class="action">
-                <a (click)="editAnswer(ans)" href="#answerForm"> edit </a>
-                <span (click)="deleteAnswer(ans.id)"> delete </span>
+                <span (click)="editAnswer(ans, i)"> edit </span>
+                <span (click)="deleteAnswer(ans.id, i)"> delete </span>
               </div>
               <div class="details">
-               <h6> {{ans.answer_user_name}}</h6>
-               <p>{{ans.created | date : "yyyy/MM/dd hh:mma"}}</p>
+                <h6>{{ ans.answer_user_name }}</h6>
+                <p>{{ ans.created | date : "yyyy/MM/dd hh:mma" }}</p>
               </div>
             </div>
-
           </div>
         </div>
       </ng-container>
     </ng-container>
 
-    <div class="row"id="answerForm" >
-      <form  action="" [formGroup]="answerForm" (submit)="postAnswer()">
+    <div class="row" id="answerForm">
+      <form action="" [formGroup]="answerForm">
         <h6>Your Answer</h6>
         <textarea
           name="answer"
@@ -44,8 +46,19 @@
           cols="30"
           rows="10"
         ></textarea>
-        <button type="submit" [disabled]="answerForm.invalid">
+        <button
+          (click)="postAnswer()"
+          *ngIf="!edit"
+          [disabled]="answerForm.invalid"
+        >
           Post Your Answer
+        </button>
+        <button
+          (click)="updateAnswer()"
+          *ngIf="edit"
+          [disabled]="answerForm.invalid"
+        >
+          update answer
         </button>
       </form>
     </div>

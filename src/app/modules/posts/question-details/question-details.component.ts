@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Answers } from 'src/app/shared/models/answers.model';
+import { Answers, AnswersRes } from 'src/app/shared/models/answers.model';
 import { Question, QuestionRes } from 'src/app/shared/models/question.model';
 import { PostsService } from 'src/app/shared/services/posts.service';
 
@@ -15,13 +15,15 @@ export class QuestionDetailsComponent {
   id: number = -1;
   question: QuestionRes | undefined;
   answerForm!: FormGroup;
-  answers: any;
+  answers:AnswersRes[]=[];
+  edit: boolean = false;
+  answerIndex: number = 0;
 
   constructor(
     private postService: PostsService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private toastr: ToastrService,
+    private toastr: ToastrService
   ) {
     route.params.subscribe((res) => {
       this.id = res['id'];
@@ -59,15 +61,37 @@ export class QuestionDetailsComponent {
     });
   }
 
-  editAnswer(ans: any) {
+  editAnswer(ans: any,i:number) {
     this.answer?.setValue(ans.answer);
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth',
+    });
+    this.answerIndex = i;
+    this.edit=true
   }
 
+  updateAnswer() {
+    console.log(this.answers);
+    this.answers[this.answerIndex].answer = this.answer?.value;
 
 
+    console.log(this.answers[this.answerIndex]);
+
+    this.postService.updateAnswer(this.answers[this.answerIndex]).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.toastr.success('updated successfully!');
+        this.edit = false;
+      },
+      error: (error) => console.log(error),
+    });
+
+  }
 
   postAnswer() {
     let user = sessionStorage.getItem('user');
+   
 
     if (user) {
       let userObj = JSON.parse(user);
@@ -92,21 +116,21 @@ export class QuestionDetailsComponent {
           error: (error) => console.log(error),
         });
       }
+    } else {
+
+      this.toastr.warning("please login");
     }
   }
 
-  deleteAnswer(id: number) {
-    this.postService.deleteAnswer(id).subscribe(
-      {
-        next: (res) => {
-          console.log(res);
-          this.toastr.success("deleted successfully!")
-        },
-        error: (error) => console.log(error),
+  deleteAnswer(id: number,index:number) {
+    this.postService.deleteAnswer(id).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.answers.splice(index, 1);
+        this.toastr.success('deleted successfully!');
 
-      }
-    )
+      },
+      error: (error) => console.log(error),
+    });
   }
-
-
 }

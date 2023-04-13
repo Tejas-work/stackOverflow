@@ -51,7 +51,7 @@ export class QuestionComponent {
 
       let date = new Date();
       const body: Question = {
-        user_id: parseInt(id),
+        user_id: userObj.id,
         question: this.question?.value,
         details: this.details?.value,
         expecting: this.expecting?.value,
@@ -73,5 +73,5 @@ export class QuestionComponent {
     }
   }
 
-  
+
 }

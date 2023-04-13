@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment.development';
-import { Question } from '../models/question.model';
+import { Question, QuestionRes } from '../models/question.model';
 import { BehaviorSubject, tap, throwError } from 'rxjs';
+import { AnswersRes } from '../models/answers.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,13 @@ export class PostsService {
   base_question_url = environment.base_questions;
   base_answer_url = environment.base_answers;
 
-  allQuestion = new BehaviorSubject<any>([]);
+  //all Questions
+  allQuestion = new BehaviorSubject<QuestionRes[]>([]);
   allQuestion$ = this.allQuestion.asObservable();
 
-  question=new BehaviorSubject<Question[]>([])
-  question$=this.question.asObservable()
+
+  userQuestion=new BehaviorSubject<Question[]>([])
+  userQuestion$=this.userQuestion.asObservable()
 
   constructor(private http: HttpClient,
     private toastr: ToastrService,
@@ -39,7 +42,7 @@ export class PostsService {
   postQuestion(body: Question) {
 
     try {
-      return this.http.post<any>(this.base_question_url, body).pipe(
+      return this.http.post<QuestionRes>(this.base_question_url, body).pipe(
         tap((res) =>
         {
           let items = this.allQuestion.getValue();
@@ -56,9 +59,34 @@ export class PostsService {
   }
 
 
+  usersAskQuestions(id:number) {
+    try {
+      return this.http.get<any>(this.base_question_url + "?user_id=" + id).pipe(
+        tap((res) => console.log(this.base_question_url + "?user_id=" + id)
+
+        )
+      );
+
+    } catch (error:any) {
+      return throwError(() => new Error(error));
+
+    }
+
+  }
+  usersAnswers(id:number) {
+    try {
+      return this.http.get<any>(this.base_answer_url+"?answer_user_id="+id);
+
+    } catch (error:any) {
+      return throwError(() => new Error(error));
+
+    }
+
+  }
+
   getQuestion() {
     try {
-      return this.http.get<Question[]>(this.base_question_url);
+      return this.http.get<QuestionRes[]>(this.base_question_url);
 
     } catch (error:any) {
       return throwError(() => new Error(error));
@@ -69,7 +97,7 @@ export class PostsService {
 
   getQuestionById(id: number) {
     try {
-      return this.http.get<Question>(this.base_question_url+"/"+id);
+      return this.http.get<QuestionRes>(this.base_question_url+"/"+id);
 
     } catch (error:any) {
       return throwError(() => new Error(error));
@@ -81,7 +109,7 @@ export class PostsService {
   getAnswerByQuestionId(id: number) {
 
     try {
-      return this.http.get<Question>(this.base_answer_url+"?question="+id);
+      return this.http.get<AnswersRes[]>(this.base_answer_url+"?question="+id);
 
     } catch (error:any) {
       return throwError(() => new Error(error));
@@ -89,11 +117,25 @@ export class PostsService {
     }
   }
 
+  updateAnswer(ans: AnswersRes) {
+
+    try {
+      return this.http.put<AnswersRes>(this.base_answer_url+"/"+ans.id,ans);
+
+    } catch (error:any) {
+      return throwError(() => new Error(error));
+
+    }
+
+
+
+  }
+
 
 
   postAnswer(body: any) {
     try {
-      return this.http.post<any>(this.base_answer_url,body);
+      return this.http.post<AnswersRes>(this.base_answer_url,body);
 
     } catch (error:any) {
       return throwError(() => new Error(error));

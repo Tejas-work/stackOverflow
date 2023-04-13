@@ -7,10 +7,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { AnswerComponent } from './answer/answer.component';
 import { UserRoutingModule } from './user-routing.module';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
-  declarations: [LoginComponent, SignUpComponent, DashboardComponent, AnswerComponent],
+  declarations: [LoginComponent, SignUpComponent, DashboardComponent, AnswerComponent, ProfileComponent],
   imports: [CommonModule,ReactiveFormsModule,UserRoutingModule],
-  exports: [LoginComponent, SignUpComponent],
+  exports: [LoginComponent, SignUpComponent,ProfileComponent],
 })
 export class UsersModule {}

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PostsService } from '../../services/posts.service';
-import { Question } from '../../models/question.model';
+import { Question, QuestionRes } from '../../models/question.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ questionDetails(id: number|undefined) {
 
 }
 
-  allQuestion:Question[] = [];
+  allQuestion:QuestionRes[] = [];
 
 
   constructor(private postService:PostsService,private router:Router) {

@@ -11,6 +11,7 @@ export interface Question{
   answer:number
 }
 export interface QuestionRes{
+  id: number,
   user_id: number,
   user_name:string
   question: string,
@@ -19,7 +20,6 @@ export interface QuestionRes{
   tag: string,
   created: Date,
   view: number,
-  id: number,
   votes: number,
   answer:number
 }

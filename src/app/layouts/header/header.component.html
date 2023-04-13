@@ -1,6 +1,6 @@
 <header>
   <nav>
-    <div class="brand">
+    <div class="brand" (click)="home()">
       <img src="../../../assets/logo-stackoverflow.png" alt="" />
     </div>
     <div class="item">
@@ -35,7 +35,7 @@
         <a class="signup" routerLink="/question">Ask Question</a>
       </div>
       <div class="items" >
-        <a class="signup">{{userName}}</a>
+        <a class="signup" routerLink="/profile">{{userName}}</a>
       </div>
     </ng-container>
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { SignUp } from 'src/app/shared/models/signUp.model';
 import { UsersService } from 'src/app/shared/services/users.service';
 
@@ -8,10 +9,14 @@ import { UsersService } from 'src/app/shared/services/users.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  home() {
+  this.router.navigate([''])
+;
+}
 
   isLogin: boolean = false
   userName: string = '';
-  constructor(private usersService:UsersService) {
+  constructor(private usersService:UsersService,private router:Router) {
 
   }
 
