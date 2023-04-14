@@ -1,8 +1,9 @@
 <section>
   <ng-container *ngIf="question">
-    <div class="row">
+    <div class="row ">
+     <div class="question">
       <div class="count">
-        
+        <i class="fa-solid fa-caret-up"></i><br><i class="fa-solid fa-caret-down"></i>
       </div>
       <main>
         <header>
@@ -14,6 +15,7 @@
         <p>{{ question.details }}</p>
         <p>{{ question.expecting }}</p>
       </main>
+     </div>
     </div>
     <ng-container *ngIf="answers && answers.length > 0">
       <h1>{{ answers.length }} Answer</h1>

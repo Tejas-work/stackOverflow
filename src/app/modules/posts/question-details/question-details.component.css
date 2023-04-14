@@ -12,6 +12,14 @@ section {
 
 }
 
+.question{
+  display: flex;
+  align-content: center;
+  justify-content: space-evenly;
+  height: 100%;
+
+}
+
 header {
   text-align: left;
   padding: 20px 0px;
